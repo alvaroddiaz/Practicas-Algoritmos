@@ -1,0 +1,175 @@
+
+ * Algoritmos
+ * Práctica 2
+ * Carlos Torres (carlos.torres)
+ * Daniel Vega (d.s.vega)
+ * Grupo 4.3
+
+ * Informe Práctica 2: Algoritmos de ordenación:
+	En este experimento se evaluará empíricamente el rendimiento de dos algoritmos
+	de ordenación en funcion de un vector de números enteros de
+	tamaño variable
+
+	1.Características de la máquina: ----------------- 
+                                     OS: Ubuntu 18.04.3 LTS x86_64 
+                                     Kernel: 4.15.0-66-generic 
+                                     CPU: Intel i5-7200U (4) @ 3.100GHz 
+                                     Memoria Principal: 7886MiB
+                                     -----------------
+                                     Compilador: gcc 7.4.0
+
+	2.Unidades de medida: Todos los tiempos se expresarán en microsegundos
+
+	3.Método: Se determinarán los tiempos de ejecución de cada uno de los
+	algoritmos, para vectores ordenados, ordenados al revés, y aleatorios,
+	y con tamaños variables empezando en 500 elementos y siguiendo una
+	progresión geométrica de razón 2.
+
+	Se usarán 2 cotas (subestimada y sobreestimada) para afianzar los resultados
+	de la cota ajustada.
+
+	K = 1000 <- En caso de que el tiempo de una sola ejecución del algoritmo sea
+	menor a 500, se calcula una media de K ejecuciones del algoritmo
+
+	4.Resultados:
+		t(n) es la función de tiempo del algoritmo en función del número de elementos
+		del vector de entrada									 
+
+Ordenación por inserción: 
+	Vector de entrada ordenado:
+										Cota subestimada:	Cota ajustada:		Cota sobreestimada:
+	      n				  t(n)		     t(n)/n^0.8		         t(n)/n		     t(n)/n^1.2
+(*)	     500		         2.4045		 0.016666667754		 0.004809000000		 0.001387588770
+(*)	    1000		         3.7850		 0.015068356405		 0.003785000000		 0.000950749014
+(*)	    2000		         7.5675		 0.017303279902		 0.003783750000		 0.000827401749
+(*)	    4000		        15.1195		 0.019855893569		 0.003779875000		 0.000719557393
+(*)	    8000		        30.2200		 0.022794101111		 0.003777500000		 0.000626017503
+(*)	   16000		        60.9600		 0.026408818524		 0.003810000000		 0.000549668664
+(*)	   32000		       129.0940		 0.032120779422		 0.004034187500		 0.000506671042
+(*)	   64000		       244.3350		 0.034917384332		 0.003817734375		 0.000417416597
+(*)	  128000		       487.0990		 0.039980595844		 0.003805460938		 0.000362214035
+	  256000		       979.0000		 0.046152020574		 0.003824218750		 0.000316879930
+	  512000		      1959.0000		 0.053041826084		 0.003826171875		 0.000276000890
+	 1024000		      3930.0000		 0.061115671105		 0.003837890625		 0.000241008635
+	 2048000		      7843.0000		 0.070051631294		 0.003829589844		 0.000209356415
+	 														  cte = 0.0038
+
+	Vector de entrada ordenado al revés:
+										Cota subestimada:	Cota ajustada:		Cota sobreestimada:
+	      n				  t(n)		     t(n)/n^1.8		     t(n)/n^2.0		     t(n)/n^2.2
+(*)	     500		       353.3805		 0.004898877425		 0.001413522000		 0.000407857611
+	    1000		      1411.0000		 0.005617292177		 0.001411000000		 0.000354427175
+	    2000		      5637.0000		 0.006444571444		 0.001409250000		 0.000308164101
+	    4000		     22521.0000		 0.007394004085		 0.001407562500		 0.000267951190
+	    8000		     90000.0000		 0.008485560473		 0.001406250000		 0.000233047548
+	   16000		    358084.0000		 0.009695471798		 0.001398765625		 0.000201799904
+	   32000		   1433545.0000		 0.011146573121		 0.001399946289		 0.000175825304
+	   64000		   5763865.0000		 0.012870334879		 0.001407193604		 0.000153857212
+	   															cte = 0.001
+
+	Vector de entrada aleatorio:
+										Cota subestimada:	Cota ajustada:		Cota sobreestimada:
+	      n				  t(n)		     t(n)/n^1.8		     t(n)/n^2.0		     t(n)/n^2.2
+(*)	     500		       182.7255		 0.002533104761		 0.000730902000		 0.000210894449
+	    1000		       731.0000		 0.002910163417		 0.000731000000		 0.000183618898
+	    2000		      2884.0000		 0.003297169424		 0.000721000000		 0.000157662811
+	    4000		     11230.0000		 0.003686988405		 0.000701875000		 0.000133612711
+	    8000		     45198.0000		 0.004261448470		 0.000706218750		 0.000117036479
+	   16000		    187115.0000		 0.005066320208		 0.000730917969		 0.000105449528
+	   32000		    718230.0000		 0.005584619397		 0.000701396484		 0.000088091416
+	   64000		   2881357.0000		 0.006433882385		 0.000703456299		 0.000076913244
+	  128000		  11610606.0000		 0.007445209835		 0.000708655151		 0.000067451709
+															  cte = 0.0007
+
+
+ (*) Tiempo promedio en 1000 ejecuciones del algoritmo
+
+Ordenación de Shell: 
+	Vector de entrada ordenado:
+										Cota subestimada:	Cota ajustada:		Cota sobreestimada:
+	      n				  t(n)		     t(n)/n^0.8	  t(n)/(n^1.01*log2(n))		     t(n)/n^1.2
+(*)	     500		        17.3290		 0.120115069870		 0.003632666356		 0.010000218668
+(*)	    1000		        37.2730		 0.148386485680		 0.003490461619		 0.009362554296
+(*)	    2000		        83.5540		 0.191048331544		 0.003530914910		 0.009135477473
+(*)	    4000		       185.4540		 0.243550043719		 0.003566271841		 0.008826005939
+(*)	    8000		       408.0280		 0.307764112781		 0.003595591026		 0.008452437774
+	   16000		       898.0000		 0.389027543221		 0.003647957958		 0.008097153222
+	   32000		      1946.0000		 0.484197846186		 0.003663041819		 0.007637704681
+	   64000		      4197.0000		 0.599784157168		 0.003677112679		 0.007170063476
+	  128000		      8987.0000		 0.737643918068		 0.003679245197		 0.006682866386
+	  256000		     19160.0000		 0.903240770377		 0.003678129018		 0.006201654197
+	  512000		     40765.0000		 1.103751934813		 0.003680899665		 0.005743326334
+	 1024000		     86535.0000		 1.345711093900		 0.003685551356		 0.005306789364
+	 2048000		    182480.0000		 1.629863786635		 0.003675030158		 0.004871013458
+																cte = 0.036
+
+	Vector de entrada ordenado al revés:
+										Cota subestimada:	Cota ajustada:		Cota sobreestimada:
+	      n				  t(n)		     t(n)/n^1.0		    t(n)/n^1.09		     t(n)/n^1.3
+(*)	     500		        23.6750		 0.047350000000		 0.027065289882		 0.007338866406
+(*)	    1000		        53.0160		 0.053016000000		 0.028471277716		 0.006674318963
+(*)	    2000		       118.3650		 0.059182500000		 0.029860742825		 0.006051796392
+(*)	    4000		       261.4810		 0.065370250000		 0.030988085577		 0.005429528892
+	    8000		       572.0000		 0.071500000000		 0.031844024030		 0.004823686180
+	   16000		      1259.0000		 0.078687500000		 0.032925694859		 0.004311910647
+	   32000		      2724.0000		 0.085125000000		 0.033465215567		 0.003788891174
+	   64000		      5865.0000		 0.091640625000		 0.033847909007		 0.003313096230
+	  128000		     12540.0000		 0.097968750000		 0.033996849257		 0.002876898740
+	  256000		     26708.0000		 0.104328125000		 0.034014164316		 0.002488452829
+	  512000		     56731.0000		 0.110802734375		 0.033940339446		 0.002146690774
+	 1024000		    120329.0000		 0.117508789062		 0.033817644527		 0.001849185008
+	 2048000		    253622.0000		 0.123838867188		 0.033483995505		 0.001582916423
+	 															cte = 0.033
+
+	Vector de entrada aleatorio:
+										Cota subestimada:	Cota ajustada:		Cota sobreestimada:
+	      n				  t(n)		     t(n)/n^1.0		    t(n)/n^1.24		     t(n)/n^1.4
+(*)	     500		        58.0970		 0.116194000000		 0.026147543946		 0.009673768738
+(*)	    1000		       135.0670		 0.135067000000		 0.025736486279		 0.008522151565
+(*)	    2000		       309.6870		 0.154843500000		 0.024983068593		 0.007404248415
+	    4000		       705.0000		 0.176250000000		 0.024078793806		 0.006387120786
+	    8000		      1609.0000		 0.201125000000		 0.023266146599		 0.005523699732
+	   16000		      3641.0000		 0.227562500000		 0.022290094025		 0.004736447231
+	   32000		      8250.0000		 0.257812500000		 0.021382967478		 0.004066717259
+	   64000		     19248.0000		 0.300750000000		 0.021121387398		 0.003595287679
+	  128000		     44140.0000		 0.344843750000		 0.020506520025		 0.003124196714
+	  256000		    101995.0000		 0.398417968750		 0.020061404065		 0.002735539126
+	  512000		    245521.0000		 0.479533203125		 0.020445319076		 0.002495230664
+	 1024000		    593367.0000		 0.579459960937		 0.020919506889		 0.002285090739
+	 2048000		   1467727.0000		 0.716663574219		 0.021907667589		 0.002141821877
+	 															cte=0.020
+
+ (*) Tiempo promedio en 1000 ejecuciones del algoritmo
+
+	5. Conclusión: Los cocientes del tiempo en función de n entre cotas ajustadas tienden a una
+	constante
+
+	> Para un vector ordenado, la cota ajustada del algoritmo de ordenación por inserción es O(n), cota superior
+	  de t(n). Para un vector ordenado, la cota ajustada del algoritmo de ordenación de Shell es O(n), cota superior
+	  de t(n)
+
+	  	ORDENACIÓN POR INSERCIÓN => t(n) = O(n)
+		ORDENACIÓN DE SHELL => t(n) = O(n)
+
+	> Para un vector ordenado al revés (de forma decreciente), la cota ajustada del algoritmo de inserción
+	  es O(n^2), cota superior de t(n). Para un vector ordenado al revés, la cota ajustada del algoritmo de
+	  ordenación de Shell es O(n^1.15), cota superior de t(n)
+
+	  	ORDENACIÓN POR INSERCIÓN => t(n) = O(n^2)
+	  	ORDENACIÓN DE SHELL => t(n) = O(n^1.15)
+
+	> Para un vector generado aleatoriamente, la cota ajustada del algoritmo de ordenación por inserción es
+	  O(n^1.8), cota superior de t(n). Para un vector generado aleatoriamente, la cota superior del algoritmo
+	  de ordenación de Shell es O(n^1.2), cota superior de t(n)
+
+	  	ORDENACIÓN POR INSERCION => t(n) = O(n^1.8)
+		ORDENACIÓN DE SHELL => t(n) = O(n^1.2)
+
+	Dadas las cotas obtenidas, podemos garantizar que el algoritmo ordenación de Shell es más eficiente que el
+	de inserción, ya que el crecimiento de su función de tiempo es mucho más lento que el de la función de tiempo
+	de inserción para grandes tamaños de vector.
+
+	En síntesis, la ordenación de Shell es igual de eficiente que la inserción para vectores ya ordenados pero mucho más
+	para vectores aleatorios
+
+-----------------------------------------------------------------------------------------------------------------------	
