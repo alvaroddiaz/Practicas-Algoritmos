@@ -1,0 +1,71 @@
+
+ * Algoritmos
+ * Práctica 2
+ * Carlos Torres (carlos.torres)
+ * Daniel Vega (d.s.vega)
+ * Grupo 4.3
+
+ * Informe Práctica 2: Algoritmos de Dijkstra:
+    En este experimento se evaluará empíricamente el rendimiento del algoritmo de Dijkstra generalizado a todos los nodos,
+    que recorre un grafo y calcula los caminos mínimos de cada nodo a todos los demás.
+
+  1.Características de la máquina:   ----------------- 
+                                     OS: elementary OS i686
+                                     Kernel: 3.19.0-80-generic 
+                                     CPU: Intel Core 2 6300 (2) @ 1.867GHz 
+                                     Memoria Principal: 2005MiB
+                                     -----------------
+                                     Compilador: gcc 4.8.4
+
+  2.Unidades de medida: Todos los tiempos se expresarán en microsegundos
+
+  3.Método: Se determinarán los tiempos de ejecución de l Algoritmos
+    para grafos no dirigidos generados aleatoriamente (usando como representación
+    en memoria la matriz de adyacencia) y con tamaños variables empezando en 8 nodos
+    y siguiendo una progresión geométrica de razón 2, hasta 1024 nodos.
+
+    Se usarán 2 cotas (subestimada y sobreestimada) para afianzar los resultados
+    de la cota ajustada.
+
+    K = 1000 <- En caso de que el tiempo de una sola ejecución del algoritmo sea
+    menor a 500 microsegundos, se calcula una media de K ejecuciones del algoritmo
+
+
+  4. Resultados:
+
+     t(n) es la función de tiempo del algoritmo en función del número de elementos
+     del vector de entrada
+
+         Algoritmo de Dijkstra:
+
+                    Tiempos de ejecución    Cota subestimada          Cota ajustada     Cota sobreestimada
+
+           n                   t(n)           t(n)/(n^2.8)          t(n)/(n^2.98)           t(n)/(n^3.2)
+(*)        8                12.9290         0.038274803688         0.026324296527         0.013532186618
+(*)       16               100.2810         0.042626797382         0.025878619660         0.010656699345
+          32               750.0000         0.045776367188         0.024530947781         0.008092194914
+          64              5783.0000         0.050681477256         0.023973799553         0.006335184657
+         128             45551.0000         0.057320504039         0.023933830229         0.005066464638
+         256            359722.0000         0.064997267096         0.023955867522         0.004062329193
+         512           2837693.0000         0.073622323263         0.023951952689         0.003253677752
+ #      1024          22712186.0000         0.084609486163         0.024297694393         0.002644046443
+                                                                   cte=0.2395
+
+    (*) Tiempo promedio en 1000 ejecuciones del algoritmo
+
+    # Anomalía persistente que no sigue el patrón dado por el resto de los tiempos.
+      Probablemente debida a limitaciones del hardware. Se ha intentado evitar sin éxito.
+
+    5. Conclusión:
+    
+    > Para grafos n-completos no dirigidos generados aleatoriamente, la cota ajustada del algoritmo de Dijkstra generalizado
+    a todos los nodos del grafo, es O(2.98) que es cota superior de t(n).
+
+      La complejidad computacional teórica es de O(n^3), dado que lo que se hace es aplicar algoritmo de Dijkstra
+      (cuya complejidad teórica para grafos n-completos es O(n^2))
+      a todos los N nodos del grafo. Es decir, es O(n) * O(n^2) = O(n^3)
+
+      Cabe destacar que la complejidad computacional obtenida empíricamente aunque próxima,
+      es ligeramente inferior a la teórica, O(n^3) (para grafos n-completos)
+
+-----------------------------------------------------------------------------------------------------------------------    
