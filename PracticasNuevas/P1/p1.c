@@ -4,13 +4,6 @@
 #include <time.h>
 #include <math.h>
 
-/*
- * Algoritmos
- * Práctica 1
- * Carlos Torres (carlos.torres)
- * Daniel Vega (d.s.vega)
- * Grupo 4.3
-*/
 
 int sumasubMax1(int v[], int tam){
     int i,j;
