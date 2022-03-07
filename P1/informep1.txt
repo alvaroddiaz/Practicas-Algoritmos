@@ -1,9 +1,7 @@
 
  * Algoritmos
  * Práctica 1
- * Carlos Torres (carlos.torres)
- * Daniel Vega (d.s.vega)
- * Grupo 4.3
+
 
 * Informe Practica 1: Algoritmos de suma de la subsecuencia máxima:
     En este experimento se evaluará empíricamente el rendimiento de dos algoritmos para
