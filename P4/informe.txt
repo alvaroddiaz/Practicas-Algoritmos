@@ -1,9 +1,7 @@
 
  * Algoritmos
  * Práctica 2
- * Carlos Torres (carlos.torres)
- * Daniel Vega (d.s.vega)
- * Grupo 4.3
+
 
  * Informe Práctica 2: Algoritmos de Dijkstra:
     En este experimento se evaluará empíricamente el rendimiento del algoritmo de Dijkstra generalizado a todos los nodos,
